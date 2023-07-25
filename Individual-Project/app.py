@@ -11,7 +11,8 @@ const = {
   "appId": "1:333657138952:web:726d6048b3a8e74ba2eebd",
   "measurementId": "G-WCRYWQDBQ4",
   "databaseURL" :"https://segev-s-recpies-default-rtdb.firebaseio.com/"
-};
+}
+
 
 firebase = pyrebase.initialize_app(const)
 auth = firebase.auth()
@@ -21,37 +22,38 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'super-secret-key'
 
 @app.route('/', methods=['GET', 'POST'])
-def signin():
+def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
         try:
-            login_session['user'] = auth.login_user(username,password)
+            login_session['user'] = auth.sign_in_with_email_and_password(email,password)
             return redirect(url_for('home'))
         except:
-            error = "Authentication failed"
-            return render_template("login.html")
-    return render_template("login.html")
+            return "Authentication failed"
+6    return render_template("login.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         fname = request.form['fname']
         lname = request.form['lname']
-        username = request.form['username']
-        age = request.form['age']        
+        username = request.form['username']       
         email = request.form['email']
         password = request.form['password']        
         try:
-            login_session['index'] = auth.create_user(email, password)
+            login_session['index'] = auth.create_user_with_email_and_password(email,password)
             uid = login_session['index']['localId']
-            user_info = {"fname":fname,"lname":lname,"username":username,"age":age,"email":email,"password":password}
+            user_info = {"fname":fname,"lname":lname,"username":username,"email":email,"password":password}
             info = db.child("index").child(uid).set(user_info)
-            return redirect(url_for('home'))
+            return redirect(url_for('home.html'))
         except:
             error = "Authentication failed"
             return render_template("signup.html")
     return render_template("signup.html")
+
+
+
 
 
 if __name__ == '__main__':
