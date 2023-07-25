@@ -30,8 +30,8 @@ def signin():
             return redirect(url_for('home'))
         except:
             error = "Authentication failed"
-            return render_template("signin.html")
-    return render_template("signin.html")
+            return render_template("login.html")
+    return render_template("login.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -53,15 +53,6 @@ def signup():
             return render_template("signup.html")
     return render_template("signup.html")
 
-@app.route('/home', methods=['GET', 'POST'])
-def respist():
-    if request.method == 'POST':
-        title = request.form['title']
-        text = request.form['text']
-        try:
-            uid = login_session['user']['localId']
-            tweet = {"title":title,"text":text,"uid":""}
-            tweets = db.child("user").child(uid).set(tweet)
-    return render_template("add_tweet.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
