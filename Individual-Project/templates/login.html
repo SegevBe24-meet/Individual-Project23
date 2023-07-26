@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta charset="UTF-8">
-    <title>Segev's Recpies</title>
+    <title>Segev's Recpies login</title>
 </head>
 <body>
+  <header>
+    <h1 class="title_text">Segev's Recpies(segev's verion)</h1>
+  </header>  
+<main>  
+ <section class="login-form">
+    <h2>Login</h2>
     <form method="post" action="/">
-        <h4>
-        Log in to your account $_$
-        </h4>
-
         <div>
             <label>Email</label>
             <div>
@@ -28,13 +31,17 @@
         <!-- Button -->
         <div>
             <div>
-                <p>pressss</p>
+                <p></p>
                 <input type="submit"/>
-                <a href="/home">
+                <a href="/home"></a>
             </div>
-        </div>    
+        </div> 
+     <button href="/signup">sign-up</button>
     </form>
-    <br>
-    <a href="/signup"><button>signup</button></a>
+  </section>
+</main>
+  <footer>
+    <p>&copy;Cooking Website. All rights reserved to Segev.</p>
+  </footer>
 </body>
 </html>

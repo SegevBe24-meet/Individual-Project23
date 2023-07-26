@@ -1,0 +1,90 @@
+/*the login.html css*/
+body {
+  font-family: "Ariel", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: lightyellow;
+}
+
+header {
+  background-color: seagreen;
+  color: #fff;
+  padding: 10px;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+
+main {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.title_text {
+  text-align: center;
+  font-family: "Sofia", sans-serif; 
+}
+
+.login-form {
+  max-width: 400px;
+  padding: 50px;
+  background-color: sandybrown;
+  border-radius: 29px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: white;
+  font-weight:bold;  
+}
+
+.login-form form {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.login-form label {
+  font-weight: bold;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: lightyellow;
+}
+
+.login-form button {
+  background-color: seagreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  font-weight:bold;
+}
+
+.login-form button:hover {
+  background-color: lightgreen;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+
+/*signup.html*/

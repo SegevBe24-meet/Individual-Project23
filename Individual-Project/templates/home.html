@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta charset="UTF-8">
-    <title>wallha</title>
+    <title>your recpies(Segev's verion)</title>
 </head>
 <body>
-<h1>vouhdsiuch</h1>
+<h1> Welcome {{username}}</h1>
+
+    <button onclick="window.location.href = '/';"> logout</button>
+    <a href="/delet_acc">delte account </a>
+
 </body>
 </html>

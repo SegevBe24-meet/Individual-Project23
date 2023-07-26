@@ -27,11 +27,12 @@ def login():
         email = request.form['email']
         password = request.form['password']
         try:
-            login_session['user'] = auth.sign_in_with_email_and_password(email,password)
-            return redirect(url_for('home'))
+            login_session['index'] = auth.sign_in_with_email_and_password(email,password)
+            return redirect(url_for('recpies'))
         except:
-            return "Authentication failed"
-6    return render_template("login.html")
+            error = "Authentication failed"
+            return render_template("login.html")
+    return render_template("login.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -45,16 +46,29 @@ def signup():
             login_session['index'] = auth.create_user_with_email_and_password(email,password)
             uid = login_session['index']['localId']
             user_info = {"fname":fname,"lname":lname,"username":username,"email":email,"password":password}
-            info = db.child("index").child(uid).set(user_info)
-            return redirect(url_for('home.html'))
+            db.child("index").child(uid).set(user_info)
+            return redirect(url_for('recpies'))
         except:
             error = "Authentication failed"
             return render_template("signup.html")
     return render_template("signup.html")
 
 
-
-
+@app.route('/home')
+def recpies():
+    uid = login_session['index']['localId']
+    user_info = db.child("index").child(uid).get().val()
+    return render_template("home.html", username=user_info["username"])
+ 
+@app.route('/delet_acc')
+def delet():
+    try:
+        uid = login_session['user']['localId']
+        db.child("index").child(uid).remove()
+        return redirect(url_for('login'))
+    except:
+        error = "Couldn’t remove account" 
+        return render_template("home.html") 
 
 if __name__ == '__main__':
     app.run(debug=True)
