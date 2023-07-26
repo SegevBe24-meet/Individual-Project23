@@ -47,18 +47,32 @@ def signup():
             uid = login_session['index']['localId']
             user_info = {"fname":fname,"lname":lname,"username":username,"email":email,"password":password}
             db.child("index").child(uid).set(user_info)
-            return redirect(url_for('recpies'))
+            return redirect(url_for('login'))
         except:
             error = "Authentication failed"
             return render_template("signup.html")
     return render_template("signup.html")
 
 
-@app.route('/home')
+@app.route('/home',methods=['GET', 'POST'])
 def recpies():
+    
+    if request.method == 'POST':
+        recipe_name = request.form['recipe_name']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+        try:
+            uid = login_session['index']['localId']
+            recipe = {"recipe_name":recipe_name,"ingredients":ingredients,"instructions":instructions}
+            db.child("recpies").push(recipe)
+            return redirect(url_for('all_recpies'))
+        except:
+            error = "Authentication failed"
+            return render_template("home.html")
     uid = login_session['index']['localId']
     user_info = db.child("index").child(uid).get().val()
-    return render_template("home.html", username=user_info["username"])
+    return render_template("home.html", username=user_info["username"])             
+
  
 @app.route('/delet_acc')
 def delet():
@@ -69,6 +83,12 @@ def delet():
     except:
         error = "Couldn’t remove account" 
         return render_template("home.html") 
+
+@app.route('/recpies', methods=['GET', 'POST'])
+def all_recpies():
+    recpies = db.child("recpies").get().val()
+    return render_template("recpies.html", recpies=recpies)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

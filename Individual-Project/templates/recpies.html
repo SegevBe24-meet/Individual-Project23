@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>your recpies(Segev's verion)</title>
+</head>
+<style>
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+</style>
+<body>
+<ul>
+  <li><a class="active" href="/recpies">all your recpies</a></li>
+  <li><a href="/home">add recpies</a></li>
+</ul>
+
+{%for respie in recpies%}
+{{recpies[respie]['recipe_name']}}
+{{recpies[respie]['ingredients']}}
+{{recpies[respie]['instructions']}}
+{%endfor%}
+
+
+
+</body>
+</html>

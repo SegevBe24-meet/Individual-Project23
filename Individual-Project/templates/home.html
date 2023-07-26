@@ -4,13 +4,47 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta charset="UTF-8">
-    <title>your recpies(Segev's verion)</title>
+    <title>signup loserss</title>
 </head>
 <body>
-<h1> Welcome {{username}}</h1>
+<header>
+<h1 class="title_text">Segev's Recpies(segev's verion)</h1>
+<li><a href="/recpies">all your recpies</a></li>
+  <li><a class="active"  href="/home">add recpies</a></li> 
+  </header>
+  <main>
+    <section class="login-form">
+      <h2>Add Recipe</h2>
+    <form method="post" action="/home">
+        <div>
+            <label>Recipe name</label>
+            <div>
+                <input type="recipe_name"  name="recipe_name" id="recipe_name" required>
+            </div>
+        </div>
 
-    <button onclick="window.location.href = '/';"> logout</button>
-    <a href="/delet_acc">delte account </a>
+        <div>
+            <label>ingredients</label>
+            <div>
+                <input type="ingredients"  name="ingredients" id="ingredients" required>
+            </div>
+        </div>
 
-</body>
-</html>
+        <div>
+            <label>instructions</label>
+            <div>
+                <input type="instructions"  name="instructions" id="instructions" required>
+            </div>
+        </div>        
+
+        <div>
+            <input type="submit" > 
+        </div>
+        <button onclick="window.location.href = '/';"> logout</button>
+        <a href="/delet_acc">delte account </a>
+    </form>
+     </section>
+   </main>
+  <footer>
+    <p>&copy;Cooking Website. All rights reserved to Segev.</p>
+  </footer>
